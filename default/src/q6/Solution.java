@@ -4,26 +4,28 @@ import java.util.Scanner;
 
 public class Solution {
 
-	//TODO: incomplete for value > 7000
-	
 	private static int maxCube = 21;
-	private static int[][] amounts = new int[22][10000];
+	private static long[][] amounts = new long[maxCube + 1][10000];
 
-	
+	public static long cube(long x) {
+		return (long) Math.pow(x, 3);
+	}
+
 	public static void dp() {
 		amounts[0][1] = 1;
 		for (int i = 0; i < 10000; i++)
 			amounts[1][i] = 1;
-		
-		for (int i = 2; i < 22; i++) {
+
+		for (int i = 2; i < maxCube + 1; i++) {
 			for (int j = 0; j < 10000; j++) {
-				int x = (j - Math.pow(i, 3) >= 0) ? amounts[i][j-(int)Math.pow(i, 3)]: 0;
-				int y = (amounts[i-1][j]);
+				long x = (j - cube(i) >= 0) ? amounts[i][(int) (j - cube(i))]
+						: 0;
+				long y = (amounts[i - 1][j]);
 				amounts[i][j] = x + y;
 			}
 		}
 	}
-	
+
 	public static int ways(int val, int maxThresh) {
 		if (val == 0)
 			return 1;
@@ -34,7 +36,7 @@ public class Solution {
 		int temp = val - (int) Math.pow(max, 3);
 		if (amounts[max][temp] == 0) {
 			total += ways(temp, max);
-			//amounts[max][temp] = total;
+			// amounts[max][temp] = total;
 		} else {
 			total += amounts[max][temp];
 		}
