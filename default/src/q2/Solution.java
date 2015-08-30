@@ -3,7 +3,6 @@ package q2;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-import java.util.StringTokenizer;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -71,7 +70,6 @@ public class Solution {
 				String exp = m.group(0);
 				// System.out.println(exp);
 
-				String[] tokens = m.group(0).split("[a-z][A-z][=]");
 				double value = 1.0;
 				char type = exp.charAt(0);
 				exp = exp.substring(2);
@@ -109,5 +107,7 @@ public class Solution {
 			System.out.println(problems.get(i).solve());
 			System.out.println("");
 		}
+		
+		sc.close();
 	}
 }

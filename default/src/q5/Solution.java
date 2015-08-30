@@ -15,8 +15,10 @@ public class Solution {
 		{
 			int game_ctr = sc.nextInt();
 			int lives = 7;
-			if (game_ctr == -1)
+			if (game_ctr == -1) {
+				sc.close();
 				return;
+			}
 			System.out.println("Round " + game_ctr);
 			
 			String word = sc.next();
